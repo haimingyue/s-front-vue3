@@ -1,11 +1,13 @@
 // import { defineConfig } from 'unocss'
 import presetWind from '@unocss/preset-wind'
 // import { presetWind, presetIcons } from 'unocss'
-import { defineConfig } from 'unocss'
+import { defineConfig, transformerDirectives } from 'unocss'
 import presetIcons from '@unocss/preset-icons'
 
 export default defineConfig({
-  rules: [['mxxz-1', { margin: '1000px' }]],
+  shortcuts: {
+    'router-link': 'text-white text-xl px-8 py-2 cursor-pointer font-300 hover:font-500'
+  },
   presets: [
     presetWind(),
     presetIcons({
@@ -16,5 +18,6 @@ export default defineConfig({
         // ...
       }
     })
-  ]
+  ],
+  transformers: [transformerDirectives()]
 })
