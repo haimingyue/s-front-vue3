@@ -4,7 +4,9 @@ import { setupLayouts } from 'virtual:generated-layouts'
 
 const router = createRouter({
   history: createWebHistory(),
-  routes: setupLayouts(routes)
+  routes: setupLayouts([
+    ...routes
+  ])
 })
 
 if (import.meta.hot) {

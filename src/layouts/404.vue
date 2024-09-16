@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script setup lant="ts">
+<script setup lang="ts">
 const router = useRouter()
 const handleBack = () => {
   console.log('back')

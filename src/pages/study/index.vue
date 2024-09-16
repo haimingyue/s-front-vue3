@@ -1,14 +1,17 @@
 <template>
-  <div class="about">
-    About
-  </div>
+    <div>
+        study
+    </div>
 </template>
 
 <script setup lang="ts">
+
 </script>
 
-<style>
+<style scoped>
+
 </style>
+
 <route lang="yaml">
 meta:
     layout: default
