@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed top-0 w-full" :class="{ 'bg-black bg-opacity-30 shadow-lg': y > 30 }">
+  <div class="fixed top-0 w-full z-50" :class="{ 'bg-black bg-opacity-30 shadow-lg': y > 30 }">
     <container>
       <img src="/100*100.png" class="w-14 h-full" alt="" />
       <Menu></Menu>
