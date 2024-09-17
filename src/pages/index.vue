@@ -1,6 +1,11 @@
 <template>
   <div>
     <swiper :items="items" height="36rem"></swiper>
+    <card :image="bg"></card>
+    <card :image="bg" border></card>
+    <card :image="bg" image-type="rounded"></card>
+    <card :image="bg" title="123" sub-title="456" image-type="avatar"></card>
+    <card :icon="'i-mdi-home'"></card>
   </div>
 </template>
 
