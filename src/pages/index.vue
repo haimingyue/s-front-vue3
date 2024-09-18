@@ -1,6 +1,6 @@
 <template>
   <div>
-    <swiper :items="items" height="36rem"></swiper>
+    <swiper :items="items" :height="36 * store.rate + 'rem'"></swiper>
     <card :image="bg"></card>
     <card :image="bg" border></card>
     <card :image="bg" image-type="rounded"></card>
@@ -13,6 +13,9 @@
 import { registerSW } from 'virtual:pwa-register'
 import type { SwiperItemType } from '@/components/types'
 import bg from '@/assets/images/bg.png'
+import { useThemeStore } from '@/store/useThemeStore'
+
+const store = useThemeStore()
 
 onMounted(() => {
   updateSW()
