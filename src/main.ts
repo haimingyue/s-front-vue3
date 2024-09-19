@@ -1,4 +1,4 @@
-import './assets/main.css'
+import './assets/main.scss'
 // import 'reset-scss'
 // import 'virtual:uno.css'
 import 'uno.css'

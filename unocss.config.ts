@@ -1,7 +1,7 @@
 // import { defineConfig } from 'unocss'
 import presetWind from '@unocss/preset-wind'
 // import { presetWind, presetIcons } from 'unocss'
-import { defineConfig, transformerDirectives } from 'unocss'
+import { defineConfig, transformerDirectives, transformerVariantGroup } from 'unocss'
 import presetIcons from '@unocss/preset-icons'
 
 export default defineConfig({
@@ -20,5 +20,5 @@ export default defineConfig({
       }
     })
   ],
-  transformers: [transformerDirectives()]
+  transformers: [transformerDirectives(), transformerVariantGroup()]
 })

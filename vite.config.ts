@@ -72,28 +72,28 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  css: {
-    postcss: { 
-      plugins: [
-        // @ts-ignore
-        postcssViewportPlugin({
-          unitToConvert: 'px',
-          viewportWidth: 750,
-          unitPrecision: 5,
-          propList: ['*', '!font-size'],
-          viewportUnit: 'vw',
-          fontViewportUnit: 'vw',
-          selectorBlackList: [],
-          minPixelValue: 1,
-          mediaQuery: true,
-          replace: true,
-          exclude: /node_modules/,
-          include: /\/src\//,
-          landscape: false,
-          landscapeUnit: 'vw',
-          landscapeWidth: 1125,
-        })
-      ]
-    }
-  }
+  // css: {
+  //   postcss: { 
+  //     plugins: [
+  //       // @ts-ignore
+  //       postcssViewportPlugin({
+  //         unitToConvert: 'px',
+  //         viewportWidth: 750,
+  //         unitPrecision: 5,
+  //         propList: ['*', '!font-size'],
+  //         viewportUnit: 'vw',
+  //         fontViewportUnit: 'vw',
+  //         selectorBlackList: [],
+  //         minPixelValue: 1,
+  //         mediaQuery: true,
+  //         replace: true,
+  //         exclude: /node_modules/,
+  //         include: /\/src\//,
+  //         landscape: false,
+  //         landscapeUnit: 'vw',
+  //         landscapeWidth: 1125,
+  //       })
+  //     ]
+  //   }
+  // }
 })
