@@ -1,11 +1,27 @@
+import type { PropType from 'vue';
 <template>
-  <div class="fixed top-0 w-full z-50" :class="{ 'bg-black bg-opacity-30 shadow-lg': y > 30 }">
+  <div
+    class="fixed top-0 w-full z-50 transition-all duration-500 h-0"
+    :class="[
+      { 'bg-black bg-opacity-30 shadow-lg': y > 30 },
+      {
+        'lt-sm:(bg-black h-full)': show
+      }
+    ]"
+  >
     <container>
       <img src="/100-100.png" class="w-14 h-full lt-sm:mx-auto" alt="" />
       <div
         @click="() => toggle()"
-        class="i-ic-round-menu text-gray-300 text-2xl absolute right-5 top-3 cursor-pointer hover:text-white"
-      ></div>
+        :class="[
+          'icon-wrap text-gray-300 text-2xl absolute right-5 top-3 cursor-pointer hover:text-white'
+        ]"
+      >
+        <Transition name="rotate-icon" mode="out-in">
+          <div v-if="show" class="i-maki:cross"></div>
+          <div v-else class="i-ic-round-menu"></div>
+        </Transition>
+      </div>
       <Menu v-show="show" class="lt-sm:(absolute top-14 right-0 w-full flex-col)"></Menu>
     </container>
   </div>
@@ -39,16 +55,32 @@ useResizeObserver(document.body, () => {
 </script>
 
 <style lang="scss" scoped>
-.i-ic-round-menu {
+.icon-wrap {
   display: none;
 }
 @media (max-width: 639.9px) {
-  .i-ic-round-menu {
+  .icon-wrap {
     display: block;
   }
 }
-
 .mobile-footer {
   display: none;
+}
+.rotate-icon-enter-active {
+  animation: scaleYIn 0.3s;
+}
+.rotate-icon-leave-active {
+  animation: scaleYIn 0.3s reverse;
+}
+
+@keyframes scaleYIn {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
 }
 </style>

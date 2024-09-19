@@ -50,4 +50,10 @@ defineProps({
     }
   }
 }
+.router-link-active {
+  span,
+  i {
+    @apply font-500 text-main;
+  }
+}
 </style>
