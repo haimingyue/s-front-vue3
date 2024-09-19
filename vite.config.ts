@@ -17,6 +17,7 @@ import { viteMockServe } from 'vite-plugin-mock'
 import { VitePWA } from 'vite-plugin-pwa'
 
 import Layouts from 'vite-plugin-vue-layouts'
+import postcssViewportPlugin from 'postcss-px-to-viewport-8-plugin'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -69,6 +70,30 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  },
+  css: {
+    postcss: { 
+      plugins: [
+        // @ts-ignore
+        postcssViewportPlugin({
+          unitToConvert: 'px',
+          viewportWidth: 750,
+          unitPrecision: 5,
+          propList: ['*', '!font-size'],
+          viewportUnit: 'vw',
+          fontViewportUnit: 'vw',
+          selectorBlackList: [],
+          minPixelValue: 1,
+          mediaQuery: true,
+          replace: true,
+          exclude: /node_modules/,
+          include: /\/src\//,
+          landscape: false,
+          landscapeUnit: 'vw',
+          landscapeWidth: 1125,
+        })
+      ]
     }
   }
 })

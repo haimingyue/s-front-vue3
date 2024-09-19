@@ -46,6 +46,8 @@
     "eslint-plugin-vue": "^9.23.0",
     "jsdom": "^25.0.0",
     "npm-run-all2": "^6.2.3",
+    "postcss": "^8.4.47",
+    "postcss-px-to-viewport-8-plugin": "^1.2.5",
     "prettier": "^3.2.5",
     "sass-embedded": "^1.78.0",
     "scss": "^0.2.4",
