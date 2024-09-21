@@ -1,34 +1,33 @@
 import type { PropType from 'vue';
 <template>
   <div
-    class="fixed top-0 w-full z-50 transition-all duration-500 h-0"
-    :class="[
-      { 'bg-black bg-opacity-30 shadow-lg': y > 30 },
-      {
-        'lt-sm:(bg-black h-full)': show
-      }
-    ]"
+    class="fixed top-0 w-full z-50 transition-all duration-300 h-0"
+    :class="[{ 'lt-sm:(bg-black h-full)': show }]"
   >
-    <container>
-      <img src="/100-100.png" class="w-14 h-full lt-sm:mx-auto" alt="" />
-      <div
-        @click="() => toggle()"
-        :class="[
-          'icon-wrap text-gray-300 text-2xl absolute right-5 top-3 cursor-pointer hover:text-white'
-        ]"
-      >
-        <Transition name="rotate-icon" mode="out-in">
-          <div v-if="show" class="i-maki:cross"></div>
-          <div v-else class="i-ic-round-menu"></div>
-        </Transition>
-      </div>
-      <Menu v-show="show" class="lt-sm:(absolute top-14 right-0 w-full flex-col)"></Menu>
-    </container>
+    <div :class="[{ 'bg-black bg-opacity-30 shadow-lg': y > 0 }]">
+      <container>
+        <img src="/100-100.png" class="w-14 h-full lt-sm:mx-auto" alt="" />
+        <div
+          @click="() => toggle()"
+          :class="[
+            'icon-wrap text-gray-300 text-2xl absolute right-5 top-3 cursor-pointer hover:text-white'
+          ]"
+        >
+          <Transition name="rotate-icon" mode="out-in">
+            <div v-if="show" class="i-maki:cross"></div>
+            <div v-else class="i-ic-round-menu"></div>
+          </Transition>
+        </div>
+        <Menu v-show="show" class="lt-sm:(absolute top-14 right-0 w-full flex-col)"></Menu>
+      </container>
+    </div>
   </div>
   <router-view></router-view>
   <div class="h-[4000px]"></div>
   <div>
-    <div class="mobile-hide">default footer</div>
+    <div class="mobile-hide">
+      <DefaultFooter></DefaultFooter>
+    </div>
     <div class="mobile-footer mobile">
       <MobileNavbar></MobileNavbar>
     </div>
