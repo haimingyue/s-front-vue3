@@ -10,6 +10,7 @@ declare module 'vue' {
     Card: typeof import('./src/components/Card.vue')['default']
     Container: typeof import('./src/components/Container.vue')['default']
     DefaultFooter: typeof import('./src/components/DefaultFooter.vue')['default']
+    FreeSwiper: typeof import('./src/components/FreeSwiper.vue')['default']
     Menu: typeof import('./src/components/Menu.vue')['default']
     MobileNavbar: typeof import('./src/components/MobileNavbar.vue')['default']
     ReloadPrompt: typeof import('./src/components/ReloadPrompt.vue')['default']

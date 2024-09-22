@@ -64,13 +64,15 @@ function getClassAndStyle(str: string) {
   }
 }
 
+const emits = defineEmits(['change'])
+
 const modules = [Navigation, Pagination]
 
 const onSwiper = (swiper: SwiperType) => {
   console.log(swiper)
 }
-const onSlideChange = () => {
-  console.log('slide change')
+const onSlideChange = (e: any) => {
+  emits('change', e)
 }
 </script>
 
