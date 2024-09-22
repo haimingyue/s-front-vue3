@@ -23,7 +23,6 @@ import type { PropType from 'vue';
     </div>
   </div>
   <router-view></router-view>
-  <div class="h-[4000px]"></div>
   <div>
     <div class="mobile-hide">
       <DefaultFooter></DefaultFooter>
