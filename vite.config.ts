@@ -19,13 +19,20 @@ import { VitePWA } from 'vite-plugin-pwa'
 import Layouts from 'vite-plugin-vue-layouts'
 import postcssViewportPlugin from 'postcss-px-to-viewport-8-plugin'
 
+import Markdown from 'unplugin-vue-markdown/vite'
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    vue(),
+    vue(
+      {
+        include: [/\.vue$/, /\.md$/], // <-- allows Vue to compile Markdown files
+      }
+    ),
     vueJsx(),
     VueRouter({
       /* options */
+      extensions: ['.vue', '.md']
     }),
     UnoCSS(),
     AutoImport({
@@ -53,7 +60,8 @@ export default defineConfig({
         IconsResolver({
           prefix: 'icon' // <--
         })
-      ]
+      ],
+      include: [/\.vue$/, /\.vue\?vue/, /\.md$/]
     }),
     Icons({ /* options */ autoInstall: true }),
     Layouts({
@@ -65,7 +73,9 @@ export default defineConfig({
       // default
       mockPath: 'mock',
       enable: true
-    })
+    }),
+
+    Markdown({ /* options */ }),
   ],
   resolve: {
     alias: {
