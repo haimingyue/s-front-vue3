@@ -26,10 +26,11 @@
         'https://static.www.toimc.com/blog/picgo/2023/06/19/swiper3-fc8015.webp',
         'https://static.www.toimc.com/blog/picgo/2023/06/19/swiper4-19130b.webp',
         'https://static.www.toimc.com/blog/picgo/2023/06/19/section4-main-item1-34f452.webp'
-    ].map(i => ({ image: i })))
+    ])
+    const titles = ref(['通实强化', '进阶提升', '高阶跃迁', '拓展&深耕', '测试'])
 </script>
 
-<Swiper :items="items" height="500px" class="w-full"></Swiper>
+<ImageSwiper :items="items" :titles="titles" :height="700" class="w-full"></ImageSwiper>
 
 <!-- ![img](https://static.www.toimc.com/blog/picgo/2023/06/19/swiper1-8a7d25.webp)
 
