@@ -30,7 +30,7 @@
     const titles = ref(['通实强化', '进阶提升', '高阶跃迁', '拓展&深耕', '测试'])
 </script>
 
-<ImageSwiper :items="items" :titles="titles" :height="700" class="w-full"></ImageSwiper>
+<ImageSwiper :items="items" :titles="titles" :height="420" class="w-full"></ImageSwiper>
 
 <!-- ![img](https://static.www.toimc.com/blog/picgo/2023/06/19/swiper1-8a7d25.webp)
 
