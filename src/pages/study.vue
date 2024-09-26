@@ -90,3 +90,7 @@ const items: SwiperItemType[] = [
   }
 }
 </style>
+<route lang="yaml">
+  meta:
+    layout: default
+</route>
