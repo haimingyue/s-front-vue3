@@ -26,11 +26,12 @@
       <div class="w-full flex">
         <div class="w-3/4 bg-white mr-4">
           <div class="border-b-1 border-b-color-gray-1">
-            <ul class="flex">
+            <!-- <ul class="flex">
               <li class="active px-4 py-2 cursor-pointer">课程介绍</li>
               <li class="px-4 py-2 cursor-pointer">章节目录</li>
               <li class="px-4 py-2 cursor-pointer">学院评价</li>
-            </ul>
+            </ul> -->
+            <Tabs :items="['课程介绍', '章节目录', '学员评价']" v-model="activeIndex"></Tabs>
           </div>
           <div class="p-4">
             <router-view></router-view>
@@ -46,6 +47,9 @@
 </template>
 
 <script setup lang="ts">
+const activeIndex = ref(0)
+
+provide('activeIndex', activeIndex)
 // import { useParams } from '@/hooks'
 // type Params = {
 //   id: string

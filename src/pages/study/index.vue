@@ -157,7 +157,7 @@
     <Container class="lt-lg:overflow-x-auto py-4">
       <div class="grid grid-cols-[repeat(4,1fr)] gap-3">
         <div
-          class="lt-sm:px-4 py-4 relative h-40 flex items-center justify-center transition-all cursor-pointer hover:(transform-translate-y--1 shadow-lg) group min-w-60"
+          class="learn-plan lt-sm:px-4 py-4 relative h-40 flex items-center justify-center transition-all cursor-pointer hover:(transform-translate-y--1 shadow-lg) min-w-60"
           v-for="(item, index) in recommend"
           :key="index"
         >
@@ -165,7 +165,7 @@
             class="absolute w-full h-full bg-cover bg-center rounded-3 overflow-hidden"
             :style="{ 'background-image': 'url(' + item.image + ')' }"
           >
-            <div class="bg-black bg-opacity-30 w-full h-full group-hover:display-none"></div>
+            <div class="mask bg-black bg-opacity-30 w-full h-full"></div>
           </div>
           <div class="z-30 px-4 line-clamp-3 text-base lg:text-xl text-white">{{ item.title }}</div>
         </div>
@@ -266,7 +266,15 @@ const recommend = ref([
 ])
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.learn-plan {
+  &:hover {
+    .mask {
+      display: none;
+    }
+  }
+}
+</style>
 
 <route lang="yaml">
 meta:
