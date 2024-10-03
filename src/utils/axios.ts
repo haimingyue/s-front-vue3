@@ -23,7 +23,7 @@ class AxiosService {
   private initInterceptors() {
     // 添加请求拦截器
     this.axiosInstance.interceptors.request.use(
-      function (config: AxiosRequestConfig) {
+      function (config) {
         // 在发送请求之前做些什么
         return config
       },
@@ -40,14 +40,6 @@ class AxiosService {
         return response
       },
       function (error: AxiosError) {
-        // 对响应错误做点什么
-        // store -> show & toast -> store.message + show = true
-        // console.log('store show', store.show)
-        // store.show = false
-        // console.error('axios error:', error)
-        // setTimeout(() => {
-        //   console.log('store show', store.show)
-        // }, 1000)
         return Promise.reject(error)
       }
     )
