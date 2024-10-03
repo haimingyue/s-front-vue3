@@ -93,7 +93,7 @@
         @change="handleSwiperChange"
       ></Swiper>
       <div class="w-1/3 bg-coolgray-700 self-stretch flex flex-col justify-center px-4">
-        <a :href="selectItem.url" target="_blank">
+        <a v-if="selectItem.url" :href="selectItem.url" target="_blank">
           <div class="text-2xl font-bold pb-4 text-gray-100">{{ selectItem.title }}</div>
           <div class="text-sm">{{ selectItem.subTitle }}</div>
           <div class="flex items-center justify-between mb-4">查看更多</div>
@@ -143,7 +143,8 @@ const homeStore = useHomeStore()
 
 const selectItem = ref({
   url: '',
-  title: ''
+  title: '',
+  subTitle: ''
 })
 
 onBeforeMount(async () => {
