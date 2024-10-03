@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Swiper :items="items" :height="36 * store.rate + 'rem'"></Swiper>
+    <Swiper :items="homeStore.swipers" :height="36 * store.rate + 'rem'"></Swiper>
     <Container>
       <div class="py-4">
         <div class="text-2xl">“</div>
@@ -21,7 +21,7 @@
         <a
           :href="item.url"
           target="_blank"
-          v-for="(item, index) in projects"
+          v-for="(item, index) in homeStore.projects"
           :key="index"
           class="flex"
         >
@@ -55,7 +55,7 @@
         <a
           :href="item.url"
           target="_blank"
-          v-for="(item, index) in lessons"
+          v-for="(item, index) in homeStore.courses"
           :key="index"
           class="flex"
         >
@@ -87,7 +87,7 @@
     </Container>
     <Container class="w-full text-gray-400">
       <Swiper
-        :items="items"
+        :items="homeStore.swiperProjects"
         :height="28 * store.rate + 'rem'"
         class="w-2/3"
         @change="handleSwiperChange"
@@ -131,134 +131,141 @@
 </template>
 
 <script setup lang="ts">
-import type { SwiperItemType } from '@/components/types'
 import { registerSW } from 'virtual:pwa-register'
-import bg from '@/assets/images/bg.png'
 import { useThemeStore } from '../store/useThemeStore'
 
-import front from '@/assets/lessons/front-end.jpeg'
-import nestjs from '@/assets/lessons/nestjs.jpeg'
-import small from '@/assets/lessons/6.jpeg'
-import project from '@/assets/lessons/project.jpeg'
-import book from '@/assets/lessons/book.jpeg'
-import blog from '@/assets/lessons/blog.png'
 import type Swiper from 'swiper'
 
+import { useHomeStore } from '../store/useHomeStore'
+
 const store = useThemeStore()
+const homeStore = useHomeStore()
 
-const items: SwiperItemType[] = [
-  {
-    image: bg,
-    title: '传播技术的种子1',
-    subTitle: '让技术没有门槛，让沟通没有障碍',
-    url: 'https://www.baidu.com'
-  },
-  {
-    image: bg,
-    title: '传播技术的种子2',
-    subTitle: '让技术没有门槛，让沟通没有障碍'
-  },
-  {
-    image: bg,
-    title: '传播技术的种子3',
-    subTitle: '让技术没有门槛，让沟通没有障碍'
-  },
-  {
-    image: bg,
-    title: '传播技术的种子4',
-    subTitle: '让技术没有门槛，让沟通没有障碍'
-  }
-]
+const selectItem = ref({
+  url: '',
+  title: ''
+})
 
-const projects = [
-  {
-    title: '前端高级工程师（大前端）',
-    subTitle: '“技术成长&职业破局”双高体系,深度打通“全栈 + 全流程 +多端+ 提效+AI赋能”',
-    url: 'https://class.imooc.com/sale/fesenior',
-    icon: 'i-mdi:web'
-  },
-  {
-    title: '前端高级工程师（大前端）',
-    subTitle: '“技术成长&职业破局”双高体系,深度打通“全栈 + 全流程 +多端+ 提效+AI赋能”',
-    url: 'https://class.imooc.com/sale/fesenior',
-    icon: 'i-mdi:web'
-  },
-  {
-    title: '前端高级工程师（大前端）',
-    subTitle: '“技术成长&职业破局”双高体系,深度打通“全栈 + 全流程 +多端+ 提效+AI赋能”',
-    url: 'https://class.imooc.com/sale/fesenior',
-    icon: 'i-mdi:web'
-  },
-  {
-    title: '前端高级工程师（大前端）',
-    subTitle: '“技术成长&职业破局”双高体系,深度打通“全栈 + 全流程 +多端+ 提效+AI赋能”',
-    url: 'https://class.imooc.com/sale/fesenior',
-    icon: 'i-mdi:web'
-  },
-  {
-    title: '前端高级工程师（大前端）',
-    subTitle: '“技术成长&职业破局”双高体系,深度打通“全栈 + 全流程 +多端+ 提效+AI赋能”',
-    url: 'https://class.imooc.com/sale/fesenior',
-    icon: 'i-mdi:web'
-  },
-  {
-    title: '前端高级工程师（大前端）',
-    subTitle: '“技术成长&职业破局”双高体系,深度打通“全栈 + 全流程 +多端+ 提效+AI赋能”',
-    url: 'https://class.imooc.com/sale/fesenior',
-    icon: 'i-mdi:web'
-  },
-  {
-    title: '前端高级工程师（大前端）',
-    subTitle: '“技术成长&职业破局”双高体系,深度打通“全栈 + 全流程 +多端+ 提效+AI赋能”',
-    url: 'https://class.imooc.com/sale/fesenior',
-    icon: 'i-mdi:web'
-  },
-  {
-    title: '前端高级工程师（大前端）',
-    subTitle: '“技术成长&职业破局”双高体系,深度打通“全栈 + 全流程 +多端+ 提效+AI赋能”',
-    url: 'https://class.imooc.com/sale/fesenior',
-    icon: 'i-mdi:web'
-  }
-]
+onBeforeMount(async () => {
+  console.log('执行几次')
+  await homeStore.fetchData()
+  selectItem.value = homeStore.swipers[0]
+  console.log('🚀 ~ file: index.vue:192 ~ onBeforeMount ~ homeStore.swipers:', selectItem)
+})
 
-const lessons = [
-  {
-    title: '前端高级工程师（大前端）',
-    subTitle: '“技术成长&职业破局”双高体系,深度打通“全栈 + 全流程 +多端+ 提效+AI赋能”',
-    url: 'https://class.imooc.com/sale/fesenior',
-    image: front
-  },
-  {
-    title: '互联网人副业指南',
-    subTitle: '专为互联网人打造，超越市面大多副业课，从0到1掌握副业成功密码',
-    url: 'https://coding.imooc.com/class/598.html',
-    image: project
-  },
-  {
-    title: 'NestJS 入门到实战',
-    subTitle: '近几年快速发展的Node.js框架，掌握未来前端工程师后端开发能力',
-    url: 'https://coding.imooc.com/class/617.html',
-    image: nestjs
-  },
-  {
-    title: '六大场景 梳理开发痛点',
-    subTitle: '摸清大前端成长之路 梳理开发痛点 解锁前端进阶路',
-    url: 'https://coding.imooc.com/class/514.html',
-    image: small
-  },
-  {
-    title: 'toimc 电子书平台',
-    subTitle: '大前端高级进阶，电子书平台，服务于课程内容',
-    url: 'https://coding.imooc.com/class/617.html',
-    image: book
-  },
-  {
-    title: 'toimc 博客',
-    subTitle: '热爱技术的发烧友，前端技术狂热者',
-    url: 'https://www.toimc.com',
-    image: blog
-  }
-]
+// const items: SwiperItemType[] = [
+//   {
+//     image: bg,
+//     title: '传播技术的种子1',
+//     subTitle: '让技术没有门槛，让沟通没有障碍',
+//     url: 'https://www.baidu.com'
+//   },
+//   {
+//     image: bg,
+//     title: '传播技术的种子2',
+//     subTitle: '让技术没有门槛，让沟通没有障碍'
+//   },
+//   {
+//     image: bg,
+//     title: '传播技术的种子3',
+//     subTitle: '让技术没有门槛，让沟通没有障碍'
+//   },
+//   {
+//     image: bg,
+//     title: '传播技术的种子4',
+//     subTitle: '让技术没有门槛，让沟通没有障碍'
+//   }
+// ]
+
+// const projects = [
+//   {
+//     title: '前端高级工程师（大前端）',
+//     subTitle: '“技术成长&职业破局”双高体系,深度打通“全栈 + 全流程 +多端+ 提效+AI赋能”',
+//     url: 'https://class.imooc.com/sale/fesenior',
+//     icon: 'i-mdi:web'
+//   },
+//   {
+//     title: '前端高级工程师（大前端）',
+//     subTitle: '“技术成长&职业破局”双高体系,深度打通“全栈 + 全流程 +多端+ 提效+AI赋能”',
+//     url: 'https://class.imooc.com/sale/fesenior',
+//     icon: 'i-mdi:web'
+//   },
+//   {
+//     title: '前端高级工程师（大前端）',
+//     subTitle: '“技术成长&职业破局”双高体系,深度打通“全栈 + 全流程 +多端+ 提效+AI赋能”',
+//     url: 'https://class.imooc.com/sale/fesenior',
+//     icon: 'i-mdi:web'
+//   },
+//   {
+//     title: '前端高级工程师（大前端）',
+//     subTitle: '“技术成长&职业破局”双高体系,深度打通“全栈 + 全流程 +多端+ 提效+AI赋能”',
+//     url: 'https://class.imooc.com/sale/fesenior',
+//     icon: 'i-mdi:web'
+//   },
+//   {
+//     title: '前端高级工程师（大前端）',
+//     subTitle: '“技术成长&职业破局”双高体系,深度打通“全栈 + 全流程 +多端+ 提效+AI赋能”',
+//     url: 'https://class.imooc.com/sale/fesenior',
+//     icon: 'i-mdi:web'
+//   },
+//   {
+//     title: '前端高级工程师（大前端）',
+//     subTitle: '“技术成长&职业破局”双高体系,深度打通“全栈 + 全流程 +多端+ 提效+AI赋能”',
+//     url: 'https://class.imooc.com/sale/fesenior',
+//     icon: 'i-mdi:web'
+//   },
+//   {
+//     title: '前端高级工程师（大前端）',
+//     subTitle: '“技术成长&职业破局”双高体系,深度打通“全栈 + 全流程 +多端+ 提效+AI赋能”',
+//     url: 'https://class.imooc.com/sale/fesenior',
+//     icon: 'i-mdi:web'
+//   },
+//   {
+//     title: '前端高级工程师（大前端）',
+//     subTitle: '“技术成长&职业破局”双高体系,深度打通“全栈 + 全流程 +多端+ 提效+AI赋能”',
+//     url: 'https://class.imooc.com/sale/fesenior',
+//     icon: 'i-mdi:web'
+//   }
+// ]
+
+// const lessons = [
+//   {
+//     title: '前端高级工程师（大前端）',
+//     subTitle: '“技术成长&职业破局”双高体系,深度打通“全栈 + 全流程 +多端+ 提效+AI赋能”',
+//     url: 'https://class.imooc.com/sale/fesenior',
+//     image: front
+//   },
+//   {
+//     title: '互联网人副业指南',
+//     subTitle: '专为互联网人打造，超越市面大多副业课，从0到1掌握副业成功密码',
+//     url: 'https://coding.imooc.com/class/598.html',
+//     image: project
+//   },
+//   {
+//     title: 'NestJS 入门到实战',
+//     subTitle: '近几年快速发展的Node.js框架，掌握未来前端工程师后端开发能力',
+//     url: 'https://coding.imooc.com/class/617.html',
+//     image: nestjs
+//   },
+//   {
+//     title: '六大场景 梳理开发痛点',
+//     subTitle: '摸清大前端成长之路 梳理开发痛点 解锁前端进阶路',
+//     url: 'https://coding.imooc.com/class/514.html',
+//     image: small
+//   },
+//   {
+//     title: 'toimc 电子书平台',
+//     subTitle: '大前端高级进阶，电子书平台，服务于课程内容',
+//     url: 'https://coding.imooc.com/class/617.html',
+//     image: book
+//   },
+//   {
+//     title: 'toimc 博客',
+//     subTitle: '热爱技术的发烧友，前端技术狂热者',
+//     url: 'https://www.toimc.com',
+//     image: blog
+//   }
+// ]
 
 const partners = ref([
   'http://e.hiphotos.baidu.com/image/pic/item/a1ec08fa513d2697e542494057fbb2fb4316d81e.jpg',
@@ -280,12 +287,11 @@ onMounted(() => {
   })
 })
 
-const selectItem = ref(items[0])
+// const selectItem = ref(items[0])
 
 function handleSwiperChange(e: Swiper) {
-  const index = e.activeIndex
-  console.log('index', index)
-  selectItem.value = items[index]
+  // const index = e.activeIndex
+  // selectItem.value = homeStore.swipers[index]
 }
 </script>
 
